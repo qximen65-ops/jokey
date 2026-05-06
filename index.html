@@ -159,7 +159,61 @@
       color: #b7770d;
       background: white;
     }
+.line-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 34px;
+  border-radius: 999px;
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: 1px;
+  overflow: hidden;
+  background: linear-gradient(
+    120deg,
+    #06c755,
+    #16e071,
+    #00b900,
+    #08d65f,
+    #06c755
+  );
+  background-size: 300% 300%;
+  box-shadow: 0 10px 26px rgba(6, 199, 85, 0.35);
+  animation: lineFlow 3s ease infinite;
+  transition: 0.25s;
+}
 
+.line-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 34px rgba(6, 199, 85, 0.48);
+}
+
+.line-btn::after {
+  content: "➜";
+  margin-left: 10px;
+  font-size: 18px;
+  transition: 0.25s;
+}
+
+.line-btn:hover::after {
+  transform: translateX(4px);
+}
+
+@keyframes lineFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
     .btn-outline:hover {
       background: #d69216;
       color: white;
