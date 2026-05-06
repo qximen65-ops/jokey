@@ -1,9 +1,622 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant">
 <head>
-  <title>My Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>多元 Strive Go｜二度就業服務平台</title>
+  <meta name="description" content="多元 Strive Go 提供二度就業、再就業資訊整理、職缺媒合與就業方向說明，協助您重新出發。" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      color: #0b2d52;
+      background: #f7f9fc;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    header {
+      background: #ffffff;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .brand-name {
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .brand-name span {
+      color: #d69216;
+      font-style: italic;
+    }
+
+    .menu {
+      display: flex;
+      gap: 34px;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .menu a {
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .menu a:hover {
+      color: #d69216;
+    }
+
+    .hero {
+      background: linear-gradient(120deg, #ffffff 0%, #f2f7fd 58%, #edf5ff 100%);
+      padding: 72px 0 60px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(214, 146, 22, 0.12);
+      color: #b7770d;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.22;
+      margin-bottom: 18px;
+      font-weight: 900;
+    }
+
+    .hero h1 span {
+      color: #d69216;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #415973;
+      margin-bottom: 30px;
+      max-width: 650px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.25s;
+    }
+
+    .btn-primary {
+      background: #083a6b;
+      color: white;
+      box-shadow: 0 8px 20px rgba(8, 58, 107, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #062f58;
+    }
+
+    .btn-outline {
+      border: 2px solid #d69216;
+      color: #b7770d;
+      background: white;
+    }
+
+    .btn-outline:hover {
+      background: #d69216;
+      color: white;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(160px, 1fr));
+      gap: 12px;
+      max-width: 620px;
+      color: #314a66;
+      font-weight: 700;
+    }
+
+    .hero-points div {
+      background: white;
+      border-radius: 14px;
+      padding: 10px 14px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    }
+
+    .hero-card {
+      background: white;
+      border-radius: 34px;
+      padding: 34px;
+      box-shadow: 0 20px 45px rgba(8, 58, 107, 0.16);
+      position: relative;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -18px -18px auto auto;
+      width: 140px;
+      height: 140px;
+      background: rgba(214, 146, 22, 0.12);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .hero-card-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .hero-card img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 22px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    }
+
+    .hero-card h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .hero-card p {
+      font-size: 17px;
+      margin: 0;
+    }
+
+    section {
+      padding: 68px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 38px;
+    }
+
+    .section-title h2 {
+      font-size: 34px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #60758c;
+      font-size: 18px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px 24px;
+      border-radius: 22px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      border: 1px solid #edf1f6;
+      transition: 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 34px rgba(8, 58, 107, 0.12);
+    }
+
+    .icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: #eef5fc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #083a6b;
+    }
+
+    .card p {
+      color: #5f7288;
+      font-size: 16px;
+    }
+
+    .jobs {
+      background: #ffffff;
+    }
+
+    .job-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .job {
+      background: #f8fbff;
+      border: 1px solid #e6edf5;
+      padding: 24px;
+      border-radius: 22px;
+    }
+
+    .job h3 {
+      color: #083a6b;
+      margin-bottom: 8px;
+      font-size: 22px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .step {
+      background: white;
+      border-radius: 24px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    .step-number {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #083a6b;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 900;
+      margin: 0 auto 16px;
+    }
+
+    .contact {
+      background: linear-gradient(135deg, #083a6b, #062b50);
+      color: white;
+      text-align: center;
+      border-radius: 34px;
+      padding: 54px 28px;
+    }
+
+    .contact h2 {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .contact p {
+      color: #dce9f5;
+      font-size: 18px;
+      margin-bottom: 26px;
+    }
+
+    .safe-note {
+      margin-top: 24px;
+      background: rgba(255,255,255,0.12);
+      padding: 18px;
+      border-radius: 18px;
+      color: #f5f7fa;
+      font-size: 15px;
+    }
+
+    footer {
+      background: #051f3b;
+      color: white;
+      padding: 34px 0;
+      text-align: center;
+      margin-top: 68px;
+    }
+
+    footer p {
+      color: #c9d6e3;
+    }
+
+    @media (max-width: 900px) {
+      .menu {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cards,
+      .job-grid,
+      .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .brand-name {
+        font-size: 22px;
+      }
+
+      .brand img {
+        width: 58px;
+        height: 58px;
+      }
+
+      .hero {
+        padding: 46px 0;
+      }
+
+      .hero-points,
+      .cards,
+      .job-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Hello World</h1>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.jpg" alt="多元 Strive Go Logo">
+        <div class="brand-name">多元 <span>Strive Go</span></div>
+      </div>
+
+      <nav class="menu">
+        <a href="#home">首頁</a>
+        <a href="#service">服務特色</a>
+        <a href="#jobs">工作類型</a>
+        <a href="#process">流程說明</a>
+        <a href="#contact">聯絡我們</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="tag">二度就業｜再出發資訊平台</div>
+
+          <h1>
+            多元就業機會，<br>
+            陪你<span>重新出發</span>
+          </h1>
+
+          <p>
+            多元 Strive Go 協助整理適合二度就業、轉職與再就業族群的工作資訊，
+            提供方向說明與基本諮詢，讓您更快找到適合自己的下一步。
+          </p>
+
+          <div class="buttons">
+            <a class="btn btn-primary" href="#contact">立即了解</a>
+            <a class="btn btn-outline" href="#jobs">查看工作類型</a>
+          </div>
+
+          <div class="hero-points">
+            <div>✔ 多元職缺資訊</div>
+            <div>✔ 二度就業方向</div>
+            <div>✔ 專人基礎說明</div>
+            <div>✔ 安心了解流程</div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-content">
+            <img src="logo.jpg" alt="多元 Strive Go">
+            <h2>多元 Strive Go</h2>
+            <p>
+              以清楚、安全、穩定的方式，協助您了解適合的工作機會與就業方向。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="service">
+      <div class="container">
+        <div class="section-title">
+          <h2>服務特色</h2>
+          <p>整理資訊、說明方向、陪您踏出下一步</p>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="icon">📋</div>
+            <h3>職缺資訊整理</h3>
+            <p>彙整不同類型的工作資訊，協助您快速掌握目前可了解的機會。</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">🧭</div>
+            <h3>就業方向建議</h3>
+            <p>依照個人需求與條件，提供適合的職涯方向與初步說明。</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">📘</div>
+            <h3>二度就業資源</h3>
+            <p>提供再就業、轉職、職涯重新規劃相關資訊，降低了解門檻。</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">🤝</div>
+            <h3>專人協助</h3>
+            <p>透過私訊或聯絡方式，由專人協助說明工作內容與了解流程。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="jobs" class="jobs">
+      <div class="container">
+        <div class="section-title">
+          <h2>熱門工作類型</h2>
+          <p>以下為常見可了解的工作方向</p>
+        </div>
+
+        <div class="job-grid">
+          <div class="job">
+            <h3>外勤巡檢</h3>
+            <p>設備巡視、環境查看、區域紀錄、現場回報等外勤性質工作。</p>
+          </div>
+
+          <div class="job">
+            <h3>資料紀錄</h3>
+            <p>資料建檔、文件整理、現場資料回報、基本行政支援等工作。</p>
+          </div>
+
+          <div class="job">
+            <h3>倉務整理</h3>
+            <p>貨品整理、出貨協助、倉儲分類、包裝與物流支援相關工作。</p>
+          </div>
+
+          <div class="job">
+            <h3>服務支援</h3>
+            <p>客服協助、據點服務、櫃台接待、簡易流程說明等服務型工作。</p>
+          </div>
+
+          <div class="job">
+            <h3>配送協助</h3>
+            <p>文件、物品、日常配送與區域支援等相關工作資訊。</p>
+          </div>
+
+          <div class="job">
+            <h3>現場協助</h3>
+            <p>活動支援、場域整理、現場紀錄與一般協助型工作。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <div class="section-title">
+          <h2>流程說明</h2>
+          <p>簡單三步驟，了解更清楚</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>瀏覽資訊</h3>
+            <p>先查看網站上的工作類型與服務內容，了解是否符合您的需求。</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>私訊諮詢</h3>
+            <p>透過私訊或聯絡方式，留下想了解的方向，由專人提供說明。</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>安排了解</h3>
+            <p>依照您的條件與需求，協助提供後續工作資訊與流程說明。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact">
+          <h2>想了解更多二度就業資訊？</h2>
+          <p>
+            歡迎透過私訊或 LINE 聯繫我們，將有專人協助您了解目前適合的工作方向。
+          </p>
+
+          <a class="btn btn-outline" href="https://line.me/R/ti/p/你的LINEID" target="_blank">
+            加入 LINE 了解
+          </a>
+
+          <div class="safe-note">
+            【安全提醒】本平台提供一般職缺資訊整理與就業方向說明，不收取任何費用或押金，
+            非投資、非直銷、非仲介，實際工作內容與條件依合作單位說明為準。
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <h3>多元 Strive Go｜二度就業服務平台</h3>
+      <p>© 2026 多元 Strive Go. All rights reserved.</p>
+    </div>
+  </footer>
+
 </body>
 </html>
